@@ -1,0 +1,73 @@
+---
+---
+
+<section id="reservar" class="relative py-20 sm:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(45,27,105,0.2)_0%,_transparent_60%)]"></div>
+
+  <div class="relative max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="booking-section text-center opacity-0">
+      <!-- Ornament -->
+      <div class="mb-6">
+        <span class="text-gold/40 text-lg tracking-[0.8em]">✧ ☽ ✧</span>
+      </div>
+
+      <span class="font-heading text-xs tracking-[0.5em] uppercase text-gold/50 block mb-4">
+        Reserva tu Lectura
+      </span>
+
+      <h2 class="font-display text-3xl sm:text-4xl md:text-5xl text-parchment glow-gold mb-6">
+        ¿Qué Te Depara el Destino?
+      </h2>
+
+      <p class="font-body text-base sm:text-lg text-mist/60 max-w-xl mx-auto italic mb-8 leading-relaxed">
+        Sesiones disponibles online desde cualquier lugar del mundo, o presenciales en Mallorca. Elige el camino que resuene con tu alma.
+      </p>
+
+      <!-- Modalities -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-10 max-w-lg mx-auto">
+        <div class="p-5 sm:p-6 border border-gold/10 bg-nightshade/20 hover:border-gold/25 transition-all duration-500 group">
+          <div class="text-2xl mb-3 text-gold/50 group-hover:text-gold/80 transition-colors">✦</div>
+          <h3 class="font-heading text-sm tracking-[0.15em] text-parchment mb-2">Online</h3>
+          <p class="font-body text-xs text-mist/50">Videollamada desde la comodidad de tu hogar. Misma energía, sin fronteras.</p>
+        </div>
+        <div class="p-5 sm:p-6 border border-gold/10 bg-nightshade/20 hover:border-gold/25 transition-all duration-500 group">
+          <div class="text-2xl mb-3 text-gold/50 group-hover:text-gold/80 transition-colors">☽</div>
+          <h3 class="font-heading text-sm tracking-[0.15em] text-parchment mb-2">Presencial</h3>
+          <p class="font-body text-xs text-mist/50">Sesión cara a cara en Mallorca. Conexión íntima con las cartas.</p>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <a
+        href="https://wa.me/"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group relative inline-flex items-center gap-3 px-8 sm:px-12 py-4 sm:py-5 bg-gradient-to-r from-gold-dark via-gold to-gold-dark text-obsidian font-heading text-sm tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_0_50px_rgba(212,175,55,0.3)]"
+      >
+        <span class="relative z-10">Reservar Ahora</span>
+        <svg class="relative z-10 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+        </svg>
+        <div class="absolute inset-0 bg-gradient-to-r from-gold-light via-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </a>
+
+      <p class="mt-4 font-body text-xs text-mist/30">
+        También puedes escribirme por WhatsApp o Instagram
+      </p>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView } from 'motion';
+
+  inView('#reservar', () => {
+    animate(
+      '.booking-section',
+      { opacity: [0, 1], y: [40, 0], scale: [0.98, 1] },
+      { duration: 0.9, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-100px' });
+</script>

@@ -1,0 +1,121 @@
+---
+const navLinks = [
+  { label: 'Inicio', href: '#hero' },
+  { label: 'Servicios', href: '#servicios' },
+  { label: 'Arcanos', href: '#arcanos' },
+  { label: 'Testimonios', href: '#testimonios' },
+];
+---
+
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="flex h-16 sm:h-20 items-center justify-between">
+      <!-- Logo -->
+      <a href="#hero" class="font-display text-lg sm:text-xl text-gold tracking-[0.2em] uppercase hover:text-gold-light transition-colors duration-300">
+        ✦ Nadia
+      </a>
+
+      <!-- Desktop Nav -->
+      <div class="hidden md:flex items-center gap-8">
+        {navLinks.map(link => (
+          <a
+            href={link.href}
+            class="nav-link font-heading text-sm tracking-[0.15em] uppercase text-mist/70 hover:text-gold transition-colors duration-300 relative"
+          >
+            {link.label}
+          </a>
+        ))}
+        <a
+          href="#reservar"
+          class="ml-4 px-5 py-2 border border-gold/40 text-gold font-heading text-sm tracking-[0.15em] uppercase hover:bg-gold/10 hover:border-gold transition-all duration-300"
+        >
+          Reservar
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button
+        id="menu-toggle"
+        class="md:hidden text-parchment p-2"
+        aria-label="Abrir menú"
+      >
+        <svg id="menu-icon" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+        <svg id="close-icon" class="w-6 h-6 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="md:hidden hidden overflow-hidden">
+    <div class="bg-void/95 backdrop-blur-xl border-t border-gold/10 px-4 py-6 space-y-4">
+      {navLinks.map(link => (
+        <a
+          href={link.href}
+          class="mobile-link block font-heading text-base tracking-[0.15em] uppercase text-mist/70 hover:text-gold transition-colors duration-300 py-2"
+        >
+          {link.label}
+        </a>
+      ))}
+      <a
+        href="#reservar"
+        class="block text-center mt-4 px-5 py-3 border border-gold/40 text-gold font-heading text-sm tracking-[0.15em] uppercase hover:bg-gold/10 transition-all duration-300"
+      >
+        Reservar Lectura
+      </a>
+    </div>
+  </div>
+</nav>
+
+<script>
+  import { animate } from 'motion';
+
+  const navbar = document.getElementById('navbar')!;
+  const toggle = document.getElementById('menu-toggle')!;
+  const menu = document.getElementById('mobile-menu')!;
+  const menuIcon = document.getElementById('menu-icon')!;
+  const closeIcon = document.getElementById('close-icon')!;
+  let isOpen = false;
+
+  // Scroll effect
+  let lastScroll = 0;
+  window.addEventListener('scroll', () => {
+    const current = window.scrollY;
+    if (current > 60) {
+      navbar.style.backgroundColor = 'rgba(6, 6, 11, 0.85)';
+      navbar.style.backdropFilter = 'blur(20px)';
+      navbar.style.borderBottom = '1px solid rgba(212, 175, 55, 0.08)';
+    } else {
+      navbar.style.backgroundColor = 'transparent';
+      navbar.style.backdropFilter = 'none';
+      navbar.style.borderBottom = '1px solid transparent';
+    }
+    lastScroll = current;
+  });
+
+  // Mobile toggle
+  toggle.addEventListener('click', () => {
+    isOpen = !isOpen;
+    menu.classList.toggle('hidden');
+    menuIcon.classList.toggle('hidden');
+    closeIcon.classList.toggle('hidden');
+
+    if (isOpen) {
+      const links = menu.querySelectorAll('.mobile-link');
+      animate(links, { opacity: [0, 1], x: [-20, 0] }, { delay: 0.05, duration: 0.3 });
+    }
+  });
+
+  // Close mobile menu on link click
+  menu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      isOpen = false;
+      menu.classList.add('hidden');
+      menuIcon.classList.remove('hidden');
+      closeIcon.classList.add('hidden');
+    });
+  });
+</script>

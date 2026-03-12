@@ -1,0 +1,119 @@
+---
+---
+
+<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+  <!-- Animated star field -->
+  <div id="star-field" class="absolute inset-0 z-0"></div>
+
+  <!-- Radial gradient overlays -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(45,27,105,0.4)_0%,_transparent_70%)] z-[1]"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom,_rgba(123,45,142,0.2)_0%,_transparent_50%)] z-[1]"></div>
+
+  <!-- Floating mystic circles -->
+  <div class="absolute top-1/4 left-1/4 w-64 h-64 sm:w-96 sm:h-96 rounded-full border border-gold/[0.06] animate-[float_8s_ease-in-out_infinite]"></div>
+  <div class="absolute bottom-1/3 right-1/4 w-48 h-48 sm:w-72 sm:h-72 rounded-full border border-amethyst/[0.08] animate-[float_12s_ease-in-out_infinite_2s]"></div>
+  <div class="absolute top-1/3 right-1/3 w-32 h-32 sm:w-48 sm:h-48 rounded-full border border-gold/[0.04] animate-[float_10s_ease-in-out_infinite_4s]"></div>
+
+  <!-- Main content -->
+  <div class="relative z-10 text-center px-4 sm:px-6 max-w-4xl mx-auto">
+    <!-- Ornamental top -->
+    <div id="hero-ornament" class="mb-6 sm:mb-8 opacity-0">
+      <span class="text-gold/60 text-xl sm:text-2xl tracking-[1em] font-light">✧ ✦ ✧</span>
+    </div>
+
+    <!-- Subtitle -->
+    <p id="hero-subtitle" class="font-heading text-xs sm:text-sm tracking-[0.4em] uppercase text-gold/70 mb-4 sm:mb-6 opacity-0">
+      Lecturas de Tarot Místico
+    </p>
+
+    <!-- Main title -->
+    <h1 id="hero-title" class="font-display text-5xl sm:text-7xl md:text-8xl lg:text-9xl text-parchment leading-[0.9] mb-6 sm:mb-8 opacity-0">
+      <span class="block">Nadia</span>
+    </h1>
+
+    <!-- Decorative line -->
+    <div id="hero-line" class="mx-auto mb-6 sm:mb-8 opacity-0">
+      <div class="h-px w-24 sm:w-32 mx-auto bg-gradient-to-r from-transparent via-gold/60 to-transparent"></div>
+    </div>
+
+    <!-- Description -->
+    <p id="hero-desc" class="font-body text-lg sm:text-xl md:text-2xl text-mist/80 max-w-2xl mx-auto mb-8 sm:mb-12 leading-relaxed opacity-0 font-light italic">
+      Descubre los secretos que el universo ha tejido en tu destino.
+      Las cartas revelan lo que las palabras no pueden expresar.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div id="hero-cta" class="flex flex-col sm:flex-row gap-4 sm:gap-6 justify-center items-center opacity-0">
+      <a
+        href="#reservar"
+        class="group relative px-8 sm:px-10 py-3.5 sm:py-4 bg-gradient-to-r from-gold-dark via-gold to-gold-dark text-obsidian font-heading text-sm tracking-[0.2em] uppercase overflow-hidden transition-all duration-500 hover:shadow-[0_0_40px_rgba(212,175,55,0.3)]"
+      >
+        <span class="relative z-10">Consulta tu Destino</span>
+        <div class="absolute inset-0 bg-gradient-to-r from-gold-light via-gold to-gold-light opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+      </a>
+      <a
+        href="#arcanos"
+        class="px-8 sm:px-10 py-3.5 sm:py-4 border border-gold/30 text-gold font-heading text-sm tracking-[0.2em] uppercase hover:bg-gold/5 hover:border-gold/60 transition-all duration-500"
+      >
+        Explorar Arcanos
+      </a>
+    </div>
+
+    <!-- Scroll indicator -->
+    <div id="hero-scroll" class="absolute bottom-8 left-1/2 -translate-x-1/2 opacity-0">
+      <div class="flex flex-col items-center gap-2">
+        <span class="font-heading text-[10px] tracking-[0.3em] uppercase text-gold/40">Descubre</span>
+        <div class="w-px h-8 bg-gradient-to-b from-gold/40 to-transparent animate-pulse"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, stagger } from 'motion';
+
+  // Generate stars
+  const starField = document.getElementById('star-field')!;
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement('div');
+    star.className = 'absolute rounded-full bg-parchment/80';
+    const size = Math.random() * 2 + 1;
+    star.style.width = `${size}px`;
+    star.style.height = `${size}px`;
+    star.style.left = `${Math.random() * 100}%`;
+    star.style.top = `${Math.random() * 100}%`;
+    star.style.animationDelay = `${Math.random() * 5}s`;
+    star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+    star.style.animation = `twinkle ${Math.random() * 3 + 2}s ease-in-out infinite ${Math.random() * 5}s`;
+    starField.appendChild(star);
+  }
+
+  // Hero entrance animations
+  const elements = [
+    '#hero-ornament',
+    '#hero-subtitle',
+    '#hero-title',
+    '#hero-line',
+    '#hero-desc',
+    '#hero-cta',
+    '#hero-scroll'
+  ];
+
+  elements.forEach((sel, i) => {
+    const el = document.querySelector(sel) as HTMLElement;
+    if (!el) return;
+    animate(
+      el,
+      { opacity: [0, 1], y: [30, 0] },
+      { duration: 0.8, delay: 0.3 + i * 0.15, easing: [0.22, 1, 0.36, 1] }
+    );
+  });
+
+  // Title special glow animation
+  const title = document.getElementById('hero-title')!;
+  animate(
+    title,
+    { textShadow: ['0 0 0px rgba(212,175,55,0)', '0 0 60px rgba(212,175,55,0.3)', '0 0 20px rgba(212,175,55,0.15)'] },
+    { duration: 2, delay: 1 }
+  );
+</script>

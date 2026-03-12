@@ -1,0 +1,102 @@
+---
+const services = [
+  {
+    icon: '☽',
+    title: 'Lectura Personal',
+    description: 'Una tirada personalizada de 10 cartas que revela los caminos ocultos de tu vida, amor y propósito espiritual.',
+    detail: 'Sesión de 45 min'
+  },
+  {
+    icon: '⚝',
+    title: 'Tirada del Amor',
+    description: 'Desentraña los hilos invisibles que conectan tu corazón con el universo. Pasado, presente y futuro amoroso.',
+    detail: 'Sesión de 30 min'
+  },
+  {
+    icon: '✧',
+    title: 'Guía Espiritual',
+    description: 'Los Arcanos Mayores iluminan tu camino espiritual, revelando lecciones kármicas y tu misión de alma.',
+    detail: 'Sesión de 60 min'
+  },
+  {
+    icon: '◈',
+    title: 'Lectura Astral',
+    description: 'Combinamos el tarot con tu carta natal para una lectura profunda que conecta los astros con las cartas.',
+    detail: 'Sesión de 75 min'
+  },
+];
+---
+
+<section id="servicios" class="relative py-20 sm:py-32 overflow-hidden">
+  <!-- Background decoration -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(45,27,105,0.15)_0%,_transparent_60%)]"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Section header -->
+    <div class="text-center mb-16 sm:mb-20">
+      <span class="features-reveal font-heading text-xs tracking-[0.5em] uppercase text-gold/50 block mb-4 opacity-0">
+        Servicios Místicos
+      </span>
+      <h2 class="features-reveal font-display text-3xl sm:text-4xl md:text-5xl text-parchment glow-gold mb-6 opacity-0">
+        Las Cartas Hablan
+      </h2>
+      <div class="features-reveal h-px w-16 mx-auto bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0"></div>
+    </div>
+
+    <!-- Service cards grid -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+      {services.map((service, index) => (
+        <div
+          class="feature-card group relative p-6 sm:p-8 bg-gradient-to-b from-nightshade/40 to-void/60 border border-gold/[0.07] hover:border-gold/20 transition-all duration-700 opacity-0"
+          data-index={index}
+        >
+          <!-- Corner accents -->
+          <div class="absolute top-0 left-0 w-4 h-4 border-t border-l border-gold/20 transition-all duration-500 group-hover:w-6 group-hover:h-6 group-hover:border-gold/40"></div>
+          <div class="absolute bottom-0 right-0 w-4 h-4 border-b border-r border-gold/20 transition-all duration-500 group-hover:w-6 group-hover:h-6 group-hover:border-gold/40"></div>
+
+          <!-- Icon -->
+          <div class="text-3xl sm:text-4xl mb-4 sm:mb-6 text-gold/70 group-hover:text-gold transition-colors duration-500">
+            {service.icon}
+          </div>
+
+          <!-- Content -->
+          <h3 class="font-heading text-base sm:text-lg tracking-[0.1em] text-parchment mb-3 group-hover:text-gold-light transition-colors duration-500">
+            {service.title}
+          </h3>
+          <p class="font-body text-sm sm:text-base text-mist/60 leading-relaxed mb-4 group-hover:text-mist/80 transition-colors duration-500">
+            {service.description}
+          </p>
+          <span class="font-heading text-[10px] sm:text-xs tracking-[0.2em] uppercase text-gold/40 group-hover:text-gold/70 transition-colors duration-500">
+            {service.detail}
+          </span>
+
+          <!-- Hover glow -->
+          <div class="absolute inset-0 bg-gradient-to-b from-gold/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  // Section header reveals
+  inView('#servicios', () => {
+    animate(
+      '.features-reveal',
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.15), duration: 0.7, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-100px' });
+
+  // Cards staggered reveal
+  inView('#servicios .grid', () => {
+    animate(
+      '.feature-card',
+      { opacity: [0, 1], y: [40, 0] },
+      { delay: stagger(0.12, { start: 0.2 }), duration: 0.7, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-50px' });
+</script>

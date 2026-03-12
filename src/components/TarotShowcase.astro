@@ -1,0 +1,155 @@
+---
+const cards = [
+  {
+    numeral: '0',
+    name: 'El Loco',
+    meaning: 'Nuevos comienzos, aventura, espontaneidad. Un salto de fe hacia lo desconocido.',
+    element: 'Aire',
+    gradient: 'from-amber-900/40 via-yellow-800/20 to-amber-950/40'
+  },
+  {
+    numeral: 'I',
+    name: 'El Mago',
+    meaning: 'Manifestación, poder personal, habilidad. Tienes todas las herramientas para crear tu realidad.',
+    element: 'Fuego',
+    gradient: 'from-purple-900/40 via-violet-800/20 to-purple-950/40'
+  },
+  {
+    numeral: 'II',
+    name: 'La Sacerdotisa',
+    meaning: 'Intuición, misterio, sabiduría interior. Los secretos se revelan a quien sabe escuchar.',
+    element: 'Agua',
+    gradient: 'from-blue-900/40 via-indigo-800/20 to-blue-950/40'
+  },
+  {
+    numeral: 'III',
+    name: 'La Emperatriz',
+    meaning: 'Abundancia, naturaleza, fertilidad. La madre nutricia que todo lo hace florecer.',
+    element: 'Tierra',
+    gradient: 'from-emerald-900/40 via-green-800/20 to-emerald-950/40'
+  },
+  {
+    numeral: 'X',
+    name: 'La Rueda',
+    meaning: 'Ciclos, destino, cambio inevitable. Lo que sube baja, y lo que baja vuelve a subir.',
+    element: 'Fuego',
+    gradient: 'from-rose-900/40 via-red-800/20 to-rose-950/40'
+  },
+];
+---
+
+<section id="arcanos" class="relative py-20 sm:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(26,10,46,0.3)_0%,_transparent_70%)]"></div>
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 sm:mb-20">
+      <span class="arcanos-reveal font-heading text-xs tracking-[0.5em] uppercase text-gold/50 block mb-4 opacity-0">
+        Los Arcanos Mayores
+      </span>
+      <h2 class="arcanos-reveal font-display text-3xl sm:text-4xl md:text-5xl text-parchment glow-gold mb-6 opacity-0">
+        Mensajeros del Destino
+      </h2>
+      <p class="arcanos-reveal font-body text-base sm:text-lg text-mist/60 max-w-xl mx-auto italic opacity-0">
+        Cada carta es un portal hacia verdades que trascienden el tiempo y el espacio
+      </p>
+    </div>
+
+    <!-- Horizontal scroll on mobile, grid on desktop -->
+    <div class="flex gap-4 sm:gap-6 overflow-x-auto pb-6 sm:pb-0 sm:overflow-visible sm:grid sm:grid-cols-3 lg:grid-cols-5 snap-x snap-mandatory sm:snap-none scrollbar-hide">
+      {cards.map((card, index) => (
+        <div
+          class="tarot-card flex-shrink-0 w-56 sm:w-auto snap-center group cursor-pointer opacity-0"
+          data-index={index}
+        >
+          <div class="perspective-1000">
+            <div class="relative transition-transform duration-700 preserve-3d group-hover:[transform:rotateY(12deg)_rotateX(-5deg)_scale(1.05)]">
+              <!-- Card face -->
+              <div class={`relative aspect-[2/3] bg-gradient-to-b ${card.gradient} border border-gold/10 group-hover:border-gold/30 transition-all duration-700 overflow-hidden`}>
+                <!-- Inner border -->
+                <div class="absolute inset-2 sm:inset-3 border border-gold/[0.08] group-hover:border-gold/20 transition-all duration-700"></div>
+
+                <!-- Card content -->
+                <div class="absolute inset-0 flex flex-col items-center justify-between p-4 sm:p-6">
+                  <!-- Numeral -->
+                  <span class="font-display text-xs sm:text-sm text-gold/50 tracking-[0.3em]">
+                    {card.numeral}
+                  </span>
+
+                  <!-- Central symbol -->
+                  <div class="flex-1 flex items-center justify-center">
+                    <div class="w-16 h-16 sm:w-20 sm:h-20 rounded-full border border-gold/15 flex items-center justify-center group-hover:border-gold/30 group-hover:shadow-[0_0_30px_rgba(212,175,55,0.15)] transition-all duration-700">
+                      <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full border border-gold/10 group-hover:border-gold/25 transition-all duration-700"></div>
+                    </div>
+                  </div>
+
+                  <!-- Card name -->
+                  <div class="text-center">
+                    <h3 class="font-heading text-sm sm:text-base tracking-[0.15em] text-parchment/90 group-hover:text-gold-light transition-colors duration-500">
+                      {card.name}
+                    </h3>
+                    <span class="font-body text-[10px] sm:text-xs text-gold/30 tracking-[0.2em] uppercase">
+                      {card.element}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Hover glow overlay -->
+                <div class="absolute inset-0 bg-gradient-to-t from-gold/[0.05] via-transparent to-gold/[0.02] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"></div>
+
+                <!-- Corner decorations -->
+                <svg class="absolute top-2 left-2 w-3 h-3 sm:w-4 sm:h-4 text-gold/20 group-hover:text-gold/40 transition-colors duration-500" viewBox="0 0 16 16" fill="none">
+                  <path d="M0 8L8 0M0 4L4 0" stroke="currentColor" stroke-width="0.5"/>
+                </svg>
+                <svg class="absolute bottom-2 right-2 w-3 h-3 sm:w-4 sm:h-4 text-gold/20 group-hover:text-gold/40 transition-colors duration-500 rotate-180" viewBox="0 0 16 16" fill="none">
+                  <path d="M0 8L8 0M0 4L4 0" stroke="currentColor" stroke-width="0.5"/>
+                </svg>
+              </div>
+            </div>
+          </div>
+
+          <!-- Card meaning (below card) -->
+          <div class="mt-3 sm:mt-4 px-1">
+            <p class="font-body text-xs sm:text-sm text-mist/40 leading-relaxed group-hover:text-mist/70 transition-colors duration-500 line-clamp-2 sm:line-clamp-3">
+              {card.meaning}
+            </p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+</style>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  // Header reveal
+  inView('#arcanos', () => {
+    animate(
+      '.arcanos-reveal',
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.15), duration: 0.7, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-100px' });
+
+  // Cards staggered reveal
+  inView('#arcanos .flex', () => {
+    animate(
+      '.tarot-card',
+      { opacity: [0, 1], y: [50, 0], rotateX: [15, 0] },
+      { delay: stagger(0.1, { start: 0.3 }), duration: 0.8, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-50px' });
+</script>

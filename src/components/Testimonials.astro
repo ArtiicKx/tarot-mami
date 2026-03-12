@@ -1,0 +1,100 @@
+---
+const testimonials = [
+  {
+    text: 'Nadia tiene un don especial. Su lectura me ayudó a tomar una decisión que cambió mi vida para siempre. Las cartas revelaron exactamente lo que necesitaba escuchar.',
+    name: 'María C.',
+    location: 'Palma de Mallorca',
+    stars: 5
+  },
+  {
+    text: 'Hice mi consulta online y fue una experiencia increíble. Nadia conecta con una energía muy especial, incluso a distancia. Totalmente recomendable.',
+    name: 'Laura S.',
+    location: 'Madrid',
+    stars: 5
+  },
+  {
+    text: 'Llevaba meses sin encontrar claridad. Una sola sesión con Nadia bastó para iluminar el camino. Su calidez y sabiduría son excepcionales.',
+    name: 'Carmen R.',
+    location: 'Inca, Mallorca',
+    stars: 5
+  },
+];
+---
+
+<section id="testimonios" class="relative py-20 sm:py-32 overflow-hidden">
+  <!-- Background -->
+  <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-gold/20 to-transparent"></div>
+  <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_left,_rgba(45,27,105,0.15)_0%,_transparent_60%)]"></div>
+
+  <div class="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <!-- Header -->
+    <div class="text-center mb-16 sm:mb-20">
+      <span class="testimonial-reveal font-heading text-xs tracking-[0.5em] uppercase text-gold/50 block mb-4 opacity-0">
+        Voces del Destino
+      </span>
+      <h2 class="testimonial-reveal font-display text-3xl sm:text-4xl md:text-5xl text-parchment glow-gold mb-6 opacity-0">
+        Lo Que Dicen
+      </h2>
+      <div class="testimonial-reveal h-px w-16 mx-auto bg-gradient-to-r from-transparent via-gold/40 to-transparent opacity-0"></div>
+    </div>
+
+    <!-- Testimonials grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {testimonials.map((t, index) => (
+        <div
+          class="testimonial-card relative p-6 sm:p-8 bg-gradient-to-b from-nightshade/30 to-void/50 border border-gold/[0.06] opacity-0"
+          data-index={index}
+        >
+          <!-- Quote mark -->
+          <div class="font-display text-4xl sm:text-5xl text-gold/15 leading-none mb-4">"</div>
+
+          <!-- Stars -->
+          <div class="flex gap-1 mb-4">
+            {Array.from({ length: t.stars }).map(() => (
+              <span class="text-gold/60 text-xs">★</span>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <p class="font-body text-base sm:text-lg text-mist/70 leading-relaxed italic mb-6">
+            {t.text}
+          </p>
+
+          <!-- Author -->
+          <div class="border-t border-gold/[0.08] pt-4">
+            <span class="font-heading text-sm tracking-[0.1em] text-parchment/80 block">
+              {t.name}
+            </span>
+            <span class="font-body text-xs text-gold/40 tracking-wider">
+              {t.location}
+            </span>
+          </div>
+
+          <!-- Corner accents -->
+          <div class="absolute top-0 right-0 w-3 h-3 border-t border-r border-gold/15"></div>
+          <div class="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-gold/15"></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import { animate, inView, stagger } from 'motion';
+
+  inView('#testimonios', () => {
+    animate(
+      '.testimonial-reveal',
+      { opacity: [0, 1], y: [20, 0] },
+      { delay: stagger(0.15), duration: 0.7, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-100px' });
+
+  inView('#testimonios .grid', () => {
+    animate(
+      '.testimonial-card',
+      { opacity: [0, 1], y: [30, 0] },
+      { delay: stagger(0.15, { start: 0.2 }), duration: 0.7, easing: [0.22, 1, 0.36, 1] }
+    );
+  }, { margin: '-50px' });
+</script>
